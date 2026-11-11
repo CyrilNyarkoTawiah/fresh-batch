@@ -36,7 +36,7 @@ export const CATEGORIES: Category[] = [
     id: 'baked-goods',
     name: 'Baked Goods',
     shortName: 'Baked Goods',
-    description: 'Loaves, pound cakes and cornbread — pulled warm from the oven.',
+    description: 'Loaves and trays pulled warm from the oven — one size: the whole batch.',
     image: 'images/category-baked.jpg',
     imageAlt: 'Freshly baked loaves and cornbread on a bakery table',
   },
@@ -44,7 +44,7 @@ export const CATEGORIES: Category[] = [
     id: 'savoury',
     name: 'Savoury Favourites',
     shortName: 'Savoury',
-    description: 'Feel-good favourites with real flavour. Meet our shawarma.',
+    description: 'Feel-good favourites with real flavour — joining the counter very soon.',
     image: 'images/category-savoury.jpg',
     imageAlt: 'A wrapped shawarma with fresh fillings',
   },
@@ -56,6 +56,8 @@ export const CATEGORIES: Category[] = [
 //   launch. Images under /images/ are replaceable sample photography.
 // To add a product: copy a block, give it a new id, fill the fields.
 // Set comingSoon: true and it appears ONLY on Coming Soon surfaces.
+// Every product sells in ONE size (whole tray / one loaf). The free "sliced"
+// add-on lets customers request their loaf sliced.
 // ══════════════════════════════════════════════════════════════════════════
 
 export const PRODUCTS: Product[] = [
@@ -69,15 +71,11 @@ export const PRODUCTS: Product[] = [
     price: 35, // ⚠ placeholder price
     image: 'images/product-cornbread.jpg',
     imageAlt: 'Golden cornbread squares stacked on parchment paper',
-    variations: [
-      { id: 'whole', label: 'Whole tray (8 squares)', priceDelta: 0 },
-      { id: 'half', label: 'Half tray (4 squares)', priceDelta: -12 },
-    ],
-    addOns: [{ id: 'butter', label: 'Whipped honey butter', price: 8 }],
+    addOns: [{ id: 'sliced', label: 'Slice the tray for me', price: 0 }],
     available: true,
     featured: true,
     bestseller: true,
-    recommendations: ['P0003', 'P0006'],
+    recommendations: ['P0002'],
   },
   {
     id: 'P0002',
@@ -89,13 +87,11 @@ export const PRODUCTS: Product[] = [
     price: 45, // ⚠ placeholder price
     image: 'images/product-chocolate.jpg',
     imageAlt: 'Rich chocolate bake with a fudgy crumb',
-    variations: [
-      { id: 'whole', label: 'Whole', priceDelta: 0 },
-      { id: 'half', label: 'Half', priceDelta: -15 },
-    ],
+    addOns: [{ id: 'sliced', label: 'Slice the loaf for me', price: 0 }],
     available: true,
     featured: true,
-    recommendations: ['P0001', 'P0004'],
+    bestseller: true,
+    recommendations: ['P0001'],
   },
   {
     id: 'P0003',
@@ -107,13 +103,10 @@ export const PRODUCTS: Product[] = [
     price: 55, // ⚠ placeholder price
     image: 'images/product-lemon-loaf.jpg',
     imageAlt: 'Sliced lemon pound cake loaf with glaze',
-    variations: [
-      { id: 'whole', label: 'Whole loaf', priceDelta: 0 },
-      { id: 'half', label: 'Half loaf', priceDelta: -18 },
-    ],
-    available: true,
-    featured: true,
-    recommendations: ['P0004', 'P0001'],
+    addOns: [{ id: 'sliced', label: 'Slice the loaf for me', price: 0 }],
+    available: false,
+    comingSoon: true,
+    comingSoonNote: 'Proofing — perfecting the glaze.',
   },
   {
     id: 'P0004',
@@ -125,12 +118,10 @@ export const PRODUCTS: Product[] = [
     price: 55, // ⚠ placeholder price
     image: 'images/product-carrot-loaf.jpg',
     imageAlt: 'Oatmeal carrot cake loaf with visible carrot and oats',
-    variations: [
-      { id: 'whole', label: 'Whole loaf', priceDelta: 0 },
-      { id: 'half', label: 'Half loaf', priceDelta: -18 },
-    ],
-    available: true,
-    recommendations: ['P0003', 'P0005'],
+    addOns: [{ id: 'sliced', label: 'Slice the loaf for me', price: 0 }],
+    available: false,
+    comingSoon: true,
+    comingSoonNote: 'In the oven — spice blend being tested.',
   },
   {
     id: 'P0005',
@@ -142,13 +133,10 @@ export const PRODUCTS: Product[] = [
     price: 50, // ⚠ placeholder price
     image: 'images/product-banana-loaf.jpg',
     imageAlt: 'Moist banana cake loaf with banana slices on top',
-    variations: [
-      { id: 'whole', label: 'Whole loaf', priceDelta: 0 },
-      { id: 'half', label: 'Half loaf', priceDelta: -16 },
-    ],
-    available: true,
-    featured: true,
-    recommendations: ['P0004', 'P0002'],
+    addOns: [{ id: 'sliced', label: 'Slice the loaf for me', price: 0 }],
+    available: false,
+    comingSoon: true,
+    comingSoonNote: 'Ripening the bananas — almost there.',
   },
   {
     id: 'P0006',
@@ -160,18 +148,13 @@ export const PRODUCTS: Product[] = [
     price: 40, // ⚠ placeholder price
     image: 'images/product-shawarma.jpg',
     imageAlt: 'A freshly wrapped shawarma with grilled filling',
-    variations: [
-      { id: 'single', label: 'Single wrap', priceDelta: 0 },
-      { id: 'double', label: 'Double protein', priceDelta: 15 },
-    ],
     addOns: [
       { id: 'extra-sauce', label: 'Extra signature sauce', price: 5 },
       { id: 'cheese', label: 'Add melted cheese', price: 7 },
     ],
-    available: true,
-    featured: true,
-    bestseller: true,
-    recommendations: ['P0001', 'P0006'],
+    available: false,
+    comingSoon: true,
+    comingSoonNote: 'Marinating — joining the menu very soon.',
   },
   // ─── Coming Soon teasers (appear ONLY on Coming Soon surfaces) ───
   {

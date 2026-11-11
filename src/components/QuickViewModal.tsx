@@ -166,26 +166,12 @@ export default function QuickViewModal({
                               </span>
                               {a.label}
                             </span>
-                            <span className="text-xs font-semibold text-cocoa/70">+{formatPrice(a.price)}</span>
+                            <span className="text-xs font-semibold text-cocoa/70">{a.price === 0 ? 'Free' : `+${formatPrice(a.price)}`}</span>
                           </button>
                         ))}
                       </div>
                     </div>
                   )}
-
-                  {/* Special instructions */}
-                  <div className="mt-4">
-                    <label htmlFor="qv-notes" className="text-[0.68rem] font-bold uppercase tracking-[0.2em] text-cocoa/60">
-                      Special instructions
-                    </label>
-                    <input
-                      id="qv-notes"
-                      value={notes}
-                      onChange={(e) => setNotes(e.target.value)}
-                      placeholder="e.g. slice the loaf before delivery"
-                      className="field mt-1.5 !py-2.5"
-                    />
-                  </div>
 
                   {/* Price + qty + add */}
                   <div className="mt-6 flex items-center justify-between gap-4 border-t border-cocoa/10 pt-5">

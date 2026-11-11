@@ -3,6 +3,8 @@ import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CartProvider } from './context/CartContext';
 import Loader from './components/Loader';
+import RouteLoader from './components/RouteLoader';
+import FloatingIcons from './components/FloatingIcons';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
@@ -50,7 +52,7 @@ const PAGE_FADE = {
 export default function App() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 1400);
+    const t = setTimeout(() => setLoading(false), 2200);
     return () => clearTimeout(t);
   }, []);
 
@@ -62,6 +64,8 @@ export default function App() {
         ) : (
           <HashRouter>
             <ScrollToTop />
+            <RouteLoader />
+            <FloatingIcons />
             <Header />
             <motion.main {...PAGE_FADE}>
               <AnimatedRoutes />

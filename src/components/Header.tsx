@@ -23,6 +23,7 @@ export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const searchRef = useRef<HTMLInputElement>(null);
+  const onHero = location.pathname === '/' && !scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -66,17 +67,17 @@ export default function Header() {
       />
       <nav className={`relative mx-auto flex max-w-7xl items-center justify-between transition-all duration-300 ${scrolled ? 'px-6 py-3 lg:px-10' : 'px-6 py-5 lg:px-10'}`}>
         <Link to="/" aria-label="Fresh Batch home">
-          <Logo />
+          <Logo variant={onHero ? 'light' : 'dark'} />
         </Link>
 
         {/* Desktop nav */}
         <ul className="hidden items-center gap-8 lg:flex">
           {NAV.map((item) => (
             <li key={item.to}>
-              <NavLink to={item.to} className="group relative text-[0.86rem] font-semibold tracking-wide text-chocolate/80 hover:text-chocolate">
+              <NavLink to={item.to} className={`group relative text-[0.86rem] font-semibold tracking-wide transition-colors ${onHero ? 'text-cream/90 hover:text-cream' : 'text-chocolate/80 hover:text-chocolate'}`}>
                 {({ isActive }) => (
                   <>
-                    <span className={isActive ? 'text-chocolate' : ''}>{item.label}</span>
+                    <span className={isActive ? (onHero ? 'text-cream' : 'text-chocolate') : ''}>{item.label}</span>
                     <span
                       className={`absolute -bottom-1.5 left-0 h-[2px] rounded-full bg-butter-deep transition-all duration-300 ${
                         isActive ? 'w-full' : 'w-0 group-hover:w-full'
@@ -94,7 +95,7 @@ export default function Header() {
           <div className="relative">
             <button
               onClick={() => setSearchOpen((o) => !o)}
-              className="grid h-10 w-10 place-items-center rounded-full text-chocolate/80 transition hover:bg-beige hover:text-chocolate"
+              className={`grid h-10 w-10 place-items-center rounded-full transition ${onHero ? 'text-cream/90 hover:bg-cream/10 hover:text-cream' : 'text-chocolate/80 hover:bg-beige hover:text-chocolate'}`}
               aria-label="Search products"
             >
               <Search size={19} strokeWidth={2.2} />
@@ -147,7 +148,7 @@ export default function Header() {
           {/* Cart */}
           <button
             onClick={openDrawer}
-            className="relative grid h-10 w-10 place-items-center rounded-full text-chocolate/80 transition hover:bg-beige hover:text-chocolate"
+            className={`relative grid h-10 w-10 place-items-center rounded-full transition ${onHero ? 'text-cream/90 hover:bg-cream/10 hover:text-cream' : 'text-chocolate/80 hover:bg-beige hover:text-chocolate'}`}
             aria-label={`Open cart, ${count} items`}
           >
             <ShoppingBag size={19} strokeWidth={2.2} />
@@ -167,14 +168,14 @@ export default function Header() {
             </AnimatePresence>
           </button>
 
-          <Link to="/menu" className="btn btn-primary !hidden !px-6 !py-2.5 md:!inline-flex">
+          <Link to="/menu" className={`btn !hidden !px-6 !py-2.5 md:!inline-flex ${onHero ? 'btn-butter' : 'btn-primary'}`}>
             Order Now <ArrowRight size={14} />
           </Link>
 
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen(true)}
-            className="grid h-10 w-10 place-items-center rounded-full text-chocolate lg:hidden"
+            className={`grid h-10 w-10 place-items-center rounded-full lg:hidden ${onHero ? 'text-cream' : 'text-chocolate'}`}
             aria-label="Open navigation"
           >
             <MenuIcon size={21} strokeWidth={2.2} />

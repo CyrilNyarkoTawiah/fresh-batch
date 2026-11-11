@@ -1,4 +1,4 @@
-import { Reveal } from './Reveal';
+import { motion } from 'framer-motion';
 
 // Consistent section heading voice: handwritten eyebrow + display headline.
 export default function SectionHeading({
@@ -18,7 +18,12 @@ export default function SectionHeading({
 }) {
   const alignCls = align === 'center' ? 'items-center text-center' : 'items-start text-left';
   return (
-    <Reveal className={`flex flex-col ${alignCls}`}>
+    <motion.div
+      className={`flex flex-col ${alignCls}`}
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    >
       <span className={`eyebrow ${light ? 'text-butter' : ''}`}>{eyebrow}</span>
       <Tag
         className={`font-display mt-1 max-w-2xl text-3xl font-bold leading-[1.15] sm:text-4xl lg:text-[2.75rem] ${
@@ -33,6 +38,6 @@ export default function SectionHeading({
         </p>
       )}
       <div className="dotline mt-5 w-24" />
-    </Reveal>
+    </motion.div>
   );
 }
