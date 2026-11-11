@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { X, Minus, Plus, ShoppingBag, Check } from 'lucide-react';
 import type { Product } from '../types';
 import { formatPrice, productById } from '../data/site';
@@ -68,7 +68,7 @@ export default function QuickViewModal({
   };
 
   return (
-    <AnimatePresence>
+    <>
       {product && (
         <>
           <motion.div
@@ -227,6 +227,6 @@ export default function QuickViewModal({
           </div>
         </>
       )}
-    </AnimatePresence>
+    </>
   );
 }

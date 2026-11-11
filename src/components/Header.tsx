@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Menu as MenuIcon, Search, ShoppingBag, X, ArrowRight } from 'lucide-react';
 import Logo from './Logo';
 import { useCart } from '../context/CartContext';
@@ -100,8 +100,7 @@ export default function Header() {
             >
               <Search size={19} strokeWidth={2.2} />
             </button>
-            <AnimatePresence>
-              {searchOpen && (
+            {searchOpen && (
                 <motion.div
                   initial={{ opacity: 0, y: -8, scale: 0.97 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -142,7 +141,6 @@ export default function Header() {
                   </ul>
                 </motion.div>
               )}
-            </AnimatePresence>
           </div>
 
           {/* Cart */}
@@ -152,8 +150,7 @@ export default function Header() {
             aria-label={`Open cart, ${count} items`}
           >
             <ShoppingBag size={19} strokeWidth={2.2} />
-            <AnimatePresence>
-              {count > 0 && (
+            {count > 0 && (
                 <motion.span
                   key={count}
                   initial={{ scale: 0.4, opacity: 0 }}
@@ -165,7 +162,6 @@ export default function Header() {
                   {count}
                 </motion.span>
               )}
-            </AnimatePresence>
           </button>
 
           <Link to="/menu" className={`btn !hidden !px-6 !py-2.5 md:!inline-flex ${onHero ? 'btn-butter' : 'btn-primary'}`}>
@@ -184,8 +180,7 @@ export default function Header() {
       </nav>
 
       {/* Mobile drawer */}
-      <AnimatePresence>
-        {mobileOpen && (
+      {mobileOpen && (
           <>
             <motion.div
               className="fixed inset-0 z-[60] bg-chocolate/40"
@@ -235,7 +230,6 @@ export default function Header() {
             </motion.aside>
           </>
         )}
-      </AnimatePresence>
     </motion.header>
   );
 }

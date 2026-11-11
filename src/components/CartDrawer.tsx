@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { X, Minus, Plus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { formatPrice, SITE } from '../data/site';
@@ -8,7 +8,7 @@ export default function CartDrawer() {
   const { drawerOpen, closeDrawer, lines, subtotal, count, updateQty, removeLine } = useCart();
 
   return (
-    <AnimatePresence>
+    <>
       {drawerOpen && (
         <>
           <motion.div
@@ -53,7 +53,7 @@ export default function CartDrawer() {
             ) : (
               <>
                 <ul className="flex-1 divide-y divide-cocoa/8 overflow-auto px-7">
-                  <AnimatePresence initial={false}>
+                  <>
                     {lines.map((line) => (
                       <motion.li
                         key={`${line.productId}-${line.variationId ?? ''}-${line.addOnIds.join(',')}-${line.notes}`}
@@ -109,7 +109,7 @@ export default function CartDrawer() {
                         </div>
                       </motion.li>
                     ))}
-                  </AnimatePresence>
+                  </>
                 </ul>
 
                 <div className="border-t border-cocoa/10 bg-beige/60 px-7 py-5">
@@ -134,6 +134,6 @@ export default function CartDrawer() {
           </motion.aside>
         </>
       )}
-    </AnimatePresence>
+    </>
   );
 }

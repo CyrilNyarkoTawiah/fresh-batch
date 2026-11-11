@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { HashRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { CartProvider } from './context/CartContext';
 import Loader from './components/Loader';
 import RouteLoader from './components/RouteLoader';
@@ -26,7 +26,7 @@ function ScrollToTop() {
 function AnimatedRoutes() {
   const location = useLocation();
   return (
-    <AnimatePresence>
+    <motion.div key={location.pathname} {...PAGE_FADE}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
@@ -38,15 +38,14 @@ function AnimatedRoutes() {
         <Route path="/order-confirmed" element={<OrderConfirmed />} />
         <Route path="*" element={<Home />} />
       </Routes>
-    </AnimatePresence>
+    </motion.div>
   );
 }
 
 const PAGE_FADE = {
   initial: { opacity: 0, y: 10 },
   animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0 },
-  transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] as const },
+  transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] as const },
 };
 
 export default function App() {
@@ -67,9 +66,7 @@ export default function App() {
             <RouteLoader />
             <FloatingIcons />
             <Header />
-            <motion.main {...PAGE_FADE}>
-              <AnimatedRoutes />
-            </motion.main>
+            <AnimatedRoutes />
             <Footer />
             <CartDrawer />
           </HashRouter>

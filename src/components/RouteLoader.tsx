@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 // Branded batter-stir overlay shown briefly on every page switch, so the
 // transition always feels intentional (and covers image prefetch time).
@@ -15,10 +15,10 @@ export default function RouteLoader({ duration = 320 }: { duration?: number }) {
   }, [pathname, duration]);
 
   return (
-    <AnimatePresence>
+    <>
       {visible && (
         <motion.div
-          className="fixed inset-0 z-[96] flex flex-col items-center justify-center bg-cream"
+          className="pointer-events-none fixed inset-0 z-[96] flex flex-col items-center justify-center bg-cream"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -38,6 +38,6 @@ export default function RouteLoader({ duration = 320 }: { duration?: number }) {
           <p className="font-hand mt-4 text-2xl text-cocoa">Fresh Batch</p>
         </motion.div>
       )}
-    </AnimatePresence>
+    </>
   );
 }

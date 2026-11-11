@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import { RevealGroup, riseIn } from '../components/Reveal';
@@ -105,7 +105,7 @@ export default function Gallery() {
       </RevealGroup>
 
       {/* Lightbox */}
-      <AnimatePresence>
+      <>
         {lightbox !== null && shots[lightbox] && (
           <>
             <motion.div
@@ -156,7 +156,7 @@ export default function Gallery() {
             </div>
           </>
         )}
-      </AnimatePresence>
+      </>
     </div>
   );
 }
