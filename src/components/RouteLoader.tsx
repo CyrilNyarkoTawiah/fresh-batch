@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 // Branded batter-stir overlay shown briefly on every page switch, so the
 // transition always feels intentional (and covers image prefetch time).
-export default function RouteLoader({ duration = 400 }: { duration?: number }) {
+export default function RouteLoader({ duration = 320 }: { duration?: number }) {
   const { pathname } = useLocation();
   const [visible, setVisible] = useState(false);
 
