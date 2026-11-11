@@ -72,7 +72,7 @@ export default function QuickViewModal({
       {product && (
         <>
           <motion.div
-            className="fixed inset-0 z-[80] bg-chocolate/55 backdrop-blur-[3px]"
+            className="fixed inset-0 z-[80] bg-chocolate/60"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
