@@ -57,7 +57,14 @@ export default function Header() {
       }}
       transition={{ duration: 0.35 }}
     >
-      <nav className={`mx-auto flex max-w-7xl items-center justify-between transition-all duration-300 ${scrolled ? 'px-6 py-3 lg:px-10' : 'px-6 py-5 lg:px-10'}`}>
+      <motion.div
+        className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-chocolate/55 to-transparent"
+        initial={false}
+        animate={{ opacity: scrolled ? 0 : 1 }}
+        transition={{ duration: 0.35 }}
+        aria-hidden="true"
+      />
+      <nav className={`relative mx-auto flex max-w-7xl items-center justify-between transition-all duration-300 ${scrolled ? 'px-6 py-3 lg:px-10' : 'px-6 py-5 lg:px-10'}`}>
         <Link to="/" aria-label="Fresh Batch home">
           <Logo />
         </Link>
