@@ -8,18 +8,20 @@ import FloatingIcons from './components/FloatingIcons';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
-import Home from './pages/Home';
-import Menu from './pages/Menu';
-import About from './pages/About';
-import Gallery from './pages/Gallery';
-import Contact from './pages/Contact';
-import ComingSoon from './pages/ComingSoon';
-import Checkout from './pages/Checkout';
-import OrderConfirmed from './pages/OrderConfirmed';
+import { lazy, Suspense } from 'react';
+
+const Home = lazy(() => import('./pages/Home'));
+const Menu = lazy(() => import('./pages/Menu'));
+const About = lazy(() => import('./pages/About'));
+const Gallery = lazy(() => import('./pages/Gallery'));
+const Contact = lazy(() => import('./pages/Contact'));
+const ComingSoon = lazy(() => import('./pages/ComingSoon'));
+const Checkout = lazy(() => import('./pages/Checkout'));
+const OrderConfirmed = lazy(() => import('./pages/OrderConfirmed'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
-  useEffect(() => window.scrollTo(0, 0), [pathname]);
+  useEffect(() => window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior }), [pathname]);
   return null;
 }
 
@@ -27,6 +29,7 @@ function AnimatedRoutes() {
   const location = useLocation();
   return (
     <motion.div key={location.pathname} {...PAGE_FADE}>
+      <Suspense fallback={null}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
@@ -38,6 +41,7 @@ function AnimatedRoutes() {
         <Route path="/order-confirmed" element={<OrderConfirmed />} />
         <Route path="*" element={<Home />} />
       </Routes>
+      </Suspense>
     </motion.div>
   );
 }
@@ -51,7 +55,9 @@ const PAGE_FADE = {
 export default function App() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 2200);
+    const seen = sessionStorage.getItem('fb-seen');
+    const t = setTimeout(() => setLoading(false), seen ? 500 : 1400);
+    sessionStorage.setItem('fb-seen', '1');
     return () => clearTimeout(t);
   }, []);
 

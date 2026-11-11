@@ -98,7 +98,7 @@ export default function Footer() {
 
       <div className="relative z-10 border-t border-cream/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-xs text-cream/50 sm:flex-row lg:px-10">
-          <p>© {new Date().getFullYear()} Fresh Batch. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Fresh Batch. All rights reserved. <span style={{ opacity: 0.55 }}>· build v1.4</span></p>
           <p className="font-hand text-base text-cream/60">Good things come from fresh batches.</p>
         </div>
       </div>
